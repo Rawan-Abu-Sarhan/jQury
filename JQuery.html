@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+    <h3>Task 2: Interacting with a Button</h3>
+    <button id="clickBtn">Click Me!</button>
+    <div id="message" style="display:none;">Hello, jQuery!</div>
+
+    <script>
+        $(document).ready(function() {
+            $('#clickBtn').click(function() {
+                $('#message').show();
+            });
+        });
+    </script>
+
+    <hr>
+
+    <h3>Task 3: Changing Styles Dynamically</h3>
+    <ul id="colorList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    <button id="changeColors">Change Colors</button>
+
+    <script>
+        $(document).ready(function() {
+            $('#changeColors').click(function() {
+                $('#colorList li').each(function(index) {
+                    if (index % 2 === 0) {
+                        $(this).css('color', 'red');
+                    } else {
+                        $(this).css('color', 'blue');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <hr>
+
+    <h3>Task 4: Adding Dynamic Content</h3>
+    <input type="text" id="newItem" placeholder="Add new item">
+    <button id="addItemBtn">Add Item</button>
+    <ul id="dynamicList"></ul>
+
+    <script>
+        $(document).ready(function() {
+            $('#addItemBtn').click(function() {
+                var newItem = $('#newItem').val();
+                if (newItem) {
+                    $('#dynamicList').append('<li>' + newItem + '</li>');
+                    $('#newItem').val('');
+                }
+            });
+        });
+    </script>
+
+    <hr>
+
+    <h3>Task 5: Animating Elements</h3>
+    <div id="box" style="width: 100px; height: 100px; background-color: blue;"></div>
+    <button id="animateBtn">Animate</button>
+
+    <script>
+        $(document).ready(function() {
+            $('#animateBtn').click(function() {
+                $('#box').animate({
+                    width: '200px',
+                    left: '+=100px'
+                }, 1000);
+            });
+        });
+    </script>
+
+    <hr>
+
+    <h3>Task 6: Event Handling</h3>
+    <button id="hoverBtn">Hover Over Me</button>
+    <p id="hoverText" style="display: none;">You hovered over me!</p>
+
+    <script>
+        $(document).ready(function() {
+            $('#hoverBtn').hover(
+                function() {
+                    $('#hoverText').show();
+                },
+                function() {
+                    $('#hoverText').hide();
+                }
+            );
+        });
+    </script>
+
+    <hr>
+
+    <h3>Task 7: Build a To-Do List</h3>
+    <input type="text" id="taskInput" placeholder="New task">
+    <button id="addTaskBtn">Add Task</button>
+    <ul id="todoList"></ul>
+    <button id="clearAllBtn">Clear All</button>
+
+    <script>
+        $(document).ready(function() {
+            $('#addTaskBtn').click(function() {
+                var taskText = $('#taskInput').val();
+                if (taskText) {
+                    $('#todoList').append('<li>' + taskText + '</li>');
+                    $('#taskInput').val('');
+                }
+            });
+
+            $('#todoList').on('click', 'li', function() {
+                $(this).css('text-decoration', $(this).css('text-decoration') === 'line-through' ? 'none' : 'line-through');
+            });
+
+            $('#clearAllBtn').click(function() {
+                $('#todoList').empty();
+            });
+        });
+    </script>
+
+    <hr>
+
+    <h3>Bonus Task 1: Simple Form with Validation</h3>
+    <form id="form">
+        <input type="text" id="name" placeholder="Name">
+        <input type="email" id="email" placeholder="Email">
+        <button type="submit">Submit</button>
+    </form>
+    <div id="successMessage" style="display:none;">Form submitted successfully!</div>
+
+    <script>
+        $(document).ready(function() {
+            $('#form').submit(function(event) {
+                event.preventDefault();
+                var name = $('#name').val();
+                var email = $('#email').val();
+                if (name && email) {
+                    $('#successMessage').fadeIn();
+                } else {
+                    alert("Please fill in all fields.");
+                }
+            });
+        });
+    </script>
+
+    <hr>
+
+    <h3>Bonus Task 2: Fade-in and Fade-out Effect</h3>
+    <button id="fadeButton">Fade In/Out</button>
+    <div id="fadeElement" style="width: 100px; height: 100px; background-color: green; display: none;"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#fadeButton').click(function() {
+                $('#fadeElement').fadeIn(1000).fadeOut(1000);
+            });
+        });
+    </script>
+
+</body>
+</html>
